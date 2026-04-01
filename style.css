@@ -1,7 +1,4 @@
-/*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
+/* CSS Reset */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -46,8 +43,10 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+/* >>>>>>>>>><<<<<<<<<<<<<<<< */
+
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: #d166cc;
@@ -55,19 +54,19 @@ body {
 }
 
 h1 {
-    margin: 10px auto;
-    padding: 22px;
+    margin: 0.625rem auto;
+    padding: 1.25rem;
     font-family: "Aldrich", sans-serif;
-    font-size: 40px;
+    font-size: 2.5rem;
     font-style: italic;
     color: #c2185b;
 }
 
 h2{
-    height: 60px;
-    margin-bottom: 15px;
+    height: 3.75rem;
+    margin-bottom: 0.938rem;
     color: #4b3fcf;
-    font-size: 36px;
+    font-size: 2.25rem;
     text-align: center;
 }
 
@@ -75,13 +74,13 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 70px;
+    gap: 4.375rem;
 }
 
 img {
-    height: 150px;
-    width: 150px;
-    border-radius: 10px;
+    height: 9.375rem;
+    width: 9.375rem;
+    border-radius: 0.625rem;
     cursor: pointer;
     transition: all ease 0.15s;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -103,15 +102,15 @@ img:active {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 35px;
-    padding: 30px;
+    gap: 2.188rem;
+    padding: 1.875rem;
 }
 
 .data-container > p{
-    padding: 10px 20px;
-    font-size: 25px;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.563rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 
 }
 
@@ -120,27 +119,27 @@ img:active {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
-    font-size: 25px;
-    height: 100px;
+    gap: 0.625rem;
+    font-size: 1.563rem;
+    height: 6.25rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #4b3fcf;
 }
 
 .result {
-    border-bottom: 2px solid #c2185b;
+    border-bottom: 0.125rem solid #c2185b;
 }
 
 span {
     color: #c2185b;
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
 .reset-btn {
     align-self: center;
     background-color: transparent;
-    padding: 10px 20px;
-    font-size: 20px;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.25rem;
     transition: all ease 0.30s;
     border: 1px solid black;
     transition: all ease 0.15s;
@@ -165,10 +164,10 @@ span {
 .svg-alignment {
    display: inline-flex;
    align-items: center;
-   gap: 8px
+   gap: 0.5rem;
 }
 
 svg {
-    width: 22px;
-    height: 22px;
+    width: 1.375rem;
+    height: 1.375rem;
 }
