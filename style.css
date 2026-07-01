@@ -1,11 +1,8 @@
 :root {
-    --bg-clr-gradient: linear-gradient(231deg, rgba(209, 102, 204, 1) 0%, rgba(199, 131, 200, 1) 14%, rgba(164, 224, 189, 1) 59%, rgba(36, 237, 116, 1) 85%, rgba(214, 195, 24, 1) 100%);
-    --img-hover-gradient: linear-gradient(45deg, rgba(209, 102, 204, 1) 0%, rgba(199, 131, 200, 1) 14%, rgba(164, 224, 189, 1) 59%, rgba(36, 237, 116, 1) 85%, rgba(214, 195, 24, 1) 100%);
     transform: scale(0.96);
     --img-box-shadow: rgba(0, 0, 0, 0.185) 0px 4px 12px;
     --primary-clr: #c2185b;
     --secondary-clr: #4b3fcf;
-    --hover-clr: #e60f0f;
     --icon-clr: #000000;
     --lrg-font-size: clamp(1rem, 5vw, 2.5rem);
     --sml-font-size: clamp(.8rem, 5vw, 1.5rem);
@@ -62,7 +59,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--bg-clr-gradient)
 }
 
 h1 {
@@ -94,18 +90,15 @@ img {
     max-width: 20vw;
     border-radius: 0.625rem;
     cursor: pointer;
-    transition: all ease 0.15s;
     box-shadow: var(--img-box-shadow);
 }
 
 img:hover {
-    background: var(--bg-clr-gradient);
-    
+    opacity: .75;
 }
 
 img:active {
-    background: var(--img-hover-gradient);
-   
+    box-shadow: none;
 }
 
 .data-container {
@@ -163,11 +156,11 @@ span {
 }
 
 .reset-btn:hover {
-    background-color: var(--hover-clr);
+    box-shadow: var(--img-box-shadow);
+    border: 1px solid transparent;
 }
 
 .reset-btn:active {
-    background-color: var(--primary-clr);
     transform: scale(0.96);
 }
 
