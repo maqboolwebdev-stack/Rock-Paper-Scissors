@@ -77,22 +77,22 @@ function playRound(playerChoice, computerChoice) {
 
     }
     const winner = checkWinner();
-    
+
 
 if (winner === 'human') {
     finalResult.textContent = 'You WON the game!';
     resetGame();
 } else if (winner === 'computer') {
+    resetGame();
     finalResult.textContent = 'Computer WON the game!';
-    resetGame();
 } else if (winner === 'tie') {
-    finalResult.textContent = 'Tie!';
     resetGame();
+    finalResult.textContent = 'Tie!';
 } else {
     finalResult.textContent = ' ';
 
 }
-  
+
 }
 
 function resetGame() {
@@ -104,6 +104,7 @@ function resetGame() {
     tied.textContent = 0;
     result.textContent = ' ';
     bothChoices.textContent = ' ';
+    finalResult.textContent = ' ';
 }
 
 
