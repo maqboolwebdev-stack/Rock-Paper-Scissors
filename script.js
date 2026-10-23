@@ -11,17 +11,19 @@ const scissorsText = 'scissors';
 const tied = document.querySelector('.tie');
 const finalResult = document.querySelector('h2');
 const resetBtn = document.querySelector('.reset-btn');
+const imgButtons = document.querySelectorAll('.button');
+const tooltip = document.querySelector('#tooltipBox');
 
 function getComputerChoice() {
-    let random = Math.random();
+  let random = Math.random();
 
-    if (random <= 0.33) {
-        return 'rock';
-    } else if (random <= 0.66) {
-        return 'paper';
-    } else {
-        return 'scissors';
-    }
+  if (random <= 0.33) {
+    return 'rock';
+  } else if (random <= 0.66) {
+    return 'paper';
+  } else {
+    return 'scissors';
+  }
 }
 
 var humanScore = 0;
@@ -31,85 +33,115 @@ const WIN_SCORE = 5;
 let gameOver = false;
 
 function checkWinner() {
-    if (humanScore >= WIN_SCORE) {
-        gameOver = true;
-        return 'human';
-    }
-    if (computerScore >= WIN_SCORE) {
-        gameOver = true;
-        return 'computer';
-    } if (tie >= WIN_SCORE) {
-        gameOver = true;
-        return 'tie'
-    }
-    return null;
+  if (humanScore >= WIN_SCORE) {
+    gameOver = true;
+    return 'human';
+  }
+  if (computerScore >= WIN_SCORE) {
+    gameOver = true;
+    return 'computer';
+  }
+  if (tie >= WIN_SCORE) {
+    gameOver = true;
+    return 'tie';
+  }
+  return null;
 }
 
 function playRound(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) {
+    tie++;
+    result.textContent = 'Tie!';
+    bothChoices.textContent = `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
+    tied.textContent = tie;
+  } else if (
+    (playerChoice === 'rock' && computerChoice === 'paper') ||
+    (playerChoice === 'paper' && computerChoice === 'scissors') ||
+    (playerChoice === 'scissors' && computerChoice === 'rock')
+  ) {
+    computerScore++;
+    result.textContent = `You lose!:`;
+    bothChoices.textContent = `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
+    computerScoreUI.textContent = computerScore;
+  } else if (
+    (playerChoice === 'rock' && computerChoice === 'scissors') ||
+    (playerChoice === 'paper' && computerChoice === 'rock') ||
+    (playerChoice === 'scissors' && computerChoice === 'paper')
+  ) {
+    humanScore++;
+    result.textContent = `You win!:`;
+    bothChoices.textContent = `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
+    humanScoreUI.textContent = humanScore;
+  }
+  const winner = checkWinner();
 
-    if (playerChoice === computerChoice) {
-        tie++;
-        result.textContent = 'Tie!';
-        bothChoices.textContent =  `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
-        tied.textContent = tie;
-    }
-
-    else if (
-        (playerChoice === 'rock' && computerChoice === 'paper') ||
-        (playerChoice === 'paper' && computerChoice === 'scissors') ||
-        (playerChoice === 'scissors' && computerChoice === 'rock')
-    ) {
-        computerScore++;
-        result.textContent = `You lose!:`
-        bothChoices.textContent =  `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
-        computerScoreUI.textContent = computerScore;
-    }
-
-    else if (
-        (playerChoice === 'rock' && computerChoice === 'scissors') ||
-        (playerChoice === 'paper' && computerChoice === 'rock') ||
-        (playerChoice === 'scissors' && computerChoice === 'paper')
-    ) {
-        humanScore++;
-        result.textContent = `You win!:`
-        bothChoices.textContent =  `you chose ' ${playerChoice} ' computer chose ' ${computerChoice} '`;
-        humanScoreUI.textContent = humanScore;
-
-    }
-    const winner = checkWinner();
-
-
-if (winner === 'human') {
+  if (winner === 'human') {
     finalResult.textContent = 'You WON the game!';
     resetGame();
-} else if (winner === 'computer') {
+  } else if (winner === 'computer') {
     resetGame();
     finalResult.textContent = 'Computer WON the game!';
-} else if (winner === 'tie') {
+  } else if (winner === 'tie') {
     resetGame();
     finalResult.textContent = 'Tie!';
-} else {
+  } else {
     finalResult.textContent = ' ';
-
-}
-
+  }
 }
 
 function resetGame() {
-     humanScore = 0;
-     computerScore = 0;
-     tie = 0;
-    humanScoreUI.textContent = 0;
-    computerScoreUI.textContent = 0;
-    tied.textContent = 0;
-    result.textContent = ' ';
-    bothChoices.textContent = ' ';
-    finalResult.textContent = ' ';
+  humanScore = 0;
+  computerScore = 0;
+  tie = 0;
+  humanScoreUI.textContent = 0;
+  computerScoreUI.textContent = 0;
+  tied.textContent = 0;
+  result.textContent = ' ';
+  bothChoices.textContent = ' ';
+  finalResult.textContent = ' ';
 }
 
+rock.addEventListener('click', () => playRound(rockText, getComputerChoice()));
+paper.addEventListener('click', () =>
+  playRound(paperText, getComputerChoice()),
+);
+scissors.addEventListener('click', () =>
+  playRound(scissorsText, getComputerChoice()),
+);
 
-rock.addEventListener('click', () => playRound(rockText, getComputerChoice()) );
-paper.addEventListener('click', () => playRound(paperText, getComputerChoice()));
-scissors.addEventListener('click', () => playRound(scissorsText, getComputerChoice()));
+resetBtn.addEventListener('click', resetGame);
 
-resetBtn.addEventListener('click', resetGame)
+// handle hover message on images
+
+let idleTimer = null;
+const delay = 800;
+
+imgButtons.forEach((img) => {
+  img.addEventListener('mousemove', (e) => {
+    tooltip.classList.remove('show');
+
+    // cancel the old timer
+    clearTimeout(idleTimer);
+
+    // set the tooltip text and update the position
+    tooltip.textContent = img.getAttribute('data-tooltip');
+    updateTooltipPosition(e);
+
+    idleTimer = setTimeout(() => {
+      tooltip.classList.add('show');
+    }, delay);
+  });
+
+  img.addEventListener('mouseleave', () => {
+    clearTimeout(idleTimer);
+    tooltip.classList.remove('show');
+  });
+});
+
+// for mouse cursor to set right-bottom
+function updateTooltipPosition(e) {
+  const offsetX = 10;
+  const offsetY = 14;
+  tooltip.style.transform = `translate(${e.clientX + offsetX}px, ${e.clientY + offsetY}px)`;
+  console.log(e.clientX, e.clientY, tooltip.getBoundingClientRect());
+}

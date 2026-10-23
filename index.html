@@ -7,21 +7,37 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/png" href="images/rps-Icon.png" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
     </style>
   </head>
   <body>
     <h1>Rock, Paper, Scissors Game</h1>
     <h2></h2>
     <div class="images-container">
-      <img class="scissors" src="images/scissors.png" alt="Scissors icon" />
-      <img class="rock" src="images/rock.png" alt="Rock icon" />
-      <img class="paper" src="images/paper.png" alt="Paper icon" />
+      <img
+        class="scissors button"
+        data-tooltip="Scissors"
+        src="images/scissors.png"
+        alt="Scissors icon"
+      />
+      <img
+        class="rock button"
+        data-tooltip="Rock"
+        src="images/rock.png"
+        alt="Rock icon"
+      />
+      <img
+        class="paper button"
+        data-tooltip="Paper"
+        src="images/paper.png"
+        alt="Paper icon"
+      />
     </div>
+    <div id="tooltipBox" class="cursor-tooltip"></div>
 
     <div class="data-container">
-      <p class="svg-alignment" >
+      <p class="svg-alignment">
         <span class="icon"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +57,7 @@
         : Your Score: <span class="human-score">0</span>
       </p>
 
-      <p class="svg-alignment" >
+      <p class="svg-alignment">
         <span class="icon"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +77,7 @@
         : Tied!: <span class="tie">0</span>
       </p>
 
-      <p class="svg-alignment" >
+      <p class="svg-alignment">
         <span class="icon"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
